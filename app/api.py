@@ -61,6 +61,7 @@ def ingest(req: IngestRequest):
     table + semantic index every other endpoint reads. This is what the UI's "index a
     real folder" flow calls; see app/datasources/filesystem_source.py."""
     from app.datasources.filesystem_source import FilesystemDataSource
+    from app.retrieval.image_search import build_index as build_image_index
     from app.retrieval.semantic_search import build_index
     from data.ingest_datasource import ingest_files
 
@@ -77,12 +78,14 @@ def ingest(req: IngestRequest):
         by_type = ingest_files(raw_files, session, clear_existing=req.clear_existing)
 
     n_indexed = build_index(force=True)
+    n_images_indexed = build_image_index(force=True)
 
     return {
         "root": str(source.root),
         "n_files_crawled": len(raw_files),
         "by_type": by_type,
         "n_indexed_total": n_indexed,
+        "n_images_indexed": n_images_indexed,
         "cleared_existing": req.clear_existing,
     }
 

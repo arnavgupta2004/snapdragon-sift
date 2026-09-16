@@ -1,0 +1,12 @@
+# Snapdragon-NPU-only dependencies. Install these IN ADDITION to requirements.txt,
+# and ONLY on Snapdragon hardware (Windows-on-Snapdragon, or Android/embedded Linux)
+# with the Qualcomm QNN SDK installed. They are not installable on x86_64 or Apple
+# Silicon dev machines, which is why they're kept out of requirements.txt — plain
+# `pip install -r requirements.txt` must keep working for anyone developing off
+# Snapdragon hardware, falling back to LLM_BACKEND=local / EMBEDDING_BACKEND=cpu
+# (see README's "NPU backend" section).
+#
+#   pip install -r requirements.txt -r requirements-qnn.txt
+
+onnxruntime-qnn>=1.20    # ONNX Runtime build with the QNN execution provider (Hexagon NPU)
+onnxruntime-genai>=0.5   # LLM decode loop (KV cache, sampling) on top of an ORT session

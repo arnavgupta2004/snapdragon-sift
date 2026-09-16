@@ -59,6 +59,21 @@ FEEDBACK_ROW_WEIGHT = 3.0
 MAX_EXTRACTED_CONTENT_CHARS = 20_000
 
 # --- Image content search (app/retrieval/image_search.py) ------------------------
-# Local, on-device CLIP variant via sentence-transformers — embeds actual pixels, not
+# CPU/GPU CLIP variant via sentence-transformers — embeds actual pixels, not
 # filename/caption text, into a shared text-image space for content-based matching.
+# This is app/embedding_client.py's "cpu" backend (the default, works everywhere).
 IMAGE_CLIP_MODEL_NAME = "clip-ViT-B-32"
+
+# --- QNN / Qualcomm AI Hub model backend (app/qnn_runtime.py, app/llm_client.py,
+# app/embedding_client.py) --------------------------------------------------------
+# These name the specific Qualcomm AI Hub model-zoo listings this project's NPU
+# backend is built against, and the on-disk layout it expects inside
+# QNN_LLM_MODEL_DIR / QNN_CLIP_MODEL_DIR (see .env.example). Getting the actual
+# compiled artifacts requires a Qualcomm AI Hub account and its export/compile
+# pipeline, which happens outside this repo — these constants just document what
+# this repo's code expects to find once that's done.
+QNN_LLM_HF_SOURCE = "Llama-v3.2-1B-Instruct"  # AI Hub model-zoo listing, quantized + compiled for Hexagon
+QNN_CLIP_HF_SOURCE = "openai/clip-vit-base-patch32"  # same weights family as IMAGE_CLIP_MODEL_NAME, so both
+# backends embed into a compatible space
+QNN_CLIP_IMAGE_ENCODER_FILENAME = "clip_image_encoder.onnx"
+QNN_CLIP_TEXT_ENCODER_FILENAME = "clip_text_encoder.onnx"

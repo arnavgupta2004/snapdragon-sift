@@ -6,16 +6,21 @@ That is deliberate: the router's latency/compute claims ("fast route makes zero 
 calls") are only honest if there is exactly one place an LLM call could originate from,
 and it is easy to audit.
 
-Two backends, selected by LLM_BACKEND (default "local"):
-  - "local" (default): Ollama, running entirely on-device. No API key, no network call
-    leaving the machine, no per-request cost — this is the required default per the
-    course brief (grading is against a fully offline, on-device system; a cloud LLM
-    API is explicitly disallowed as the primary path).
+Three backends, selected by LLM_BACKEND (default "local"):
+  - "local" (default): Ollama, running entirely on-device via CPU/GPU. No API key, no
+    network call leaving the machine, no per-request cost — the safe default on any
+    machine, and the fallback path on non-Snapdragon hardware during development.
+  - "qnn": a quantized instruction LLM from Qualcomm AI Hub, compiled for the Hexagon
+    NPU and run via ONNX Runtime GenAI + the QNN execution provider. Only usable on
+    Snapdragon silicon with the QNN SDK installed (see QNN_LLM_MODEL_DIR in
+    .env.example) — this is the NPU-accelerated path this project targets for the
+    Snapdragon AI Lab Build & Present Challenge.
   - "cloud": Google Gemini, kept as an optional comparison arm (set LLM_BACKEND=cloud
     and GEMINI_API_KEY) for eval/local_vs_cloud.py and for anyone who wants to see the
-    tradeoff directly. Not the default, and never silently falls back to it — if a key
-    is missing for whichever backend is selected, is_available is simply False and the
-    rest of the system uses its rule-based fallback path.
+    tradeoff directly. Not the default, and never silently falls back to it — if a
+    backend isn't usable (missing key, missing QNN hardware/model, Ollama not
+    running), is_available is simply False and the rest of the system uses its
+    rule-based fallback path.
 
 Model choice for the local backend (qwen2.5:1.5b) was picked empirically, not by
 default assumption — see eval/local_vs_cloud.py and REPORT.md for the 3-model
@@ -32,6 +37,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 from functools import lru_cache
+from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -42,6 +48,7 @@ LLM_BACKEND = os.environ.get("LLM_BACKEND", "local").strip().lower()
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:1.5b")
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+QNN_LLM_MODEL_DIR = os.environ.get("QNN_LLM_MODEL_DIR", "").strip()
 
 MAX_RATE_LIMIT_RETRIES = 3
 _RETRY_DELAY_RE = re.compile(r"retryDelay['\"]?\s*:\s*['\"]?(\d+(?:\.\d+)?)s")
@@ -105,6 +112,94 @@ class _OllamaBackend:
             model=self.model,
             backend="local",
         )
+
+
+class _QnnLlmBackend:
+    """On-device NPU inference via a quantized instruction LLM from Qualcomm AI Hub,
+    run through ONNX Runtime GenAI (`onnxruntime_genai`) with the QNN execution
+    provider targeting the Hexagon NPU.
+
+    AI Hub's export/compile step for genai-class models produces a model directory
+    (weights + tokenizer + a genai_config.json) where the execution provider and the
+    Hexagon backend library path are already named in genai_config.json — so unlike
+    app/embedding_client.py's QNN backend, this class doesn't select the provider
+    itself; it just points onnxruntime_genai at QNN_LLM_MODEL_DIR and the config file
+    picks the EP up. Availability requires: onnxruntime_genai importable, and that
+    directory actually present with a genai_config.json in it — anything else and
+    is_available is False, same degrade-to-rule-based-fallback contract as every
+    other backend in this module.
+
+    The onnxruntime_genai call surface below (Model/Tokenizer/GeneratorParams/
+    Generator) matches the library's documented API as of this writing, but hasn't
+    been exercised against a real QNN-compiled model on this machine (no Snapdragon
+    hardware in this dev environment) — verify against whatever onnxruntime_genai
+    version ships with the exported model before relying on it."""
+
+    def __init__(self, model_dir: str = QNN_LLM_MODEL_DIR) -> None:
+        self.model_dir = model_dir
+        self.model = Path(model_dir).name if model_dir else "qnn-llm"
+        self._og = None
+        self._model = None
+        self._tokenizer = None
+        self.is_available = self._load()
+
+    def _load(self) -> bool:
+        if not self.model_dir or not (Path(self.model_dir) / "genai_config.json").exists():
+            return False
+        try:
+            import onnxruntime_genai as og
+        except ImportError:
+            return False
+        try:
+            self._og = og
+            self._model = og.Model(self.model_dir)
+            self._tokenizer = og.Tokenizer(self._model)
+        except Exception:
+            return False
+        return True
+
+    def complete(self, prompt: str, system: str | None, max_tokens: int, temperature: float) -> LLMCallResult:
+        if not self.is_available:
+            raise RuntimeError(
+                "QNN LLM backend called without a loaded NPU model. Check is_available "
+                "before calling, or point QNN_LLM_MODEL_DIR at a compiled model directory."
+            )
+        full_prompt = _llama_instruct_prompt(system, prompt)
+        input_tokens = self._tokenizer.encode(full_prompt)
+
+        params = self._og.GeneratorParams(self._model)
+        params.set_search_options(
+            max_length=len(input_tokens) + max_tokens,
+            temperature=max(temperature, 1e-4),
+            do_sample=temperature > 0,
+        )
+        generator = self._og.Generator(self._model, params)
+        generator.append_tokens(input_tokens)
+
+        output_tokens: list[int] = []
+        while not generator.is_done():
+            generator.generate_next_token()
+            output_tokens.append(generator.get_next_tokens()[0])
+
+        return LLMCallResult(
+            text=self._tokenizer.decode(output_tokens).strip(),
+            input_tokens=len(input_tokens),
+            output_tokens=len(output_tokens),
+            model=self.model,
+            backend="qnn",
+        )
+
+
+def _llama_instruct_prompt(system: str | None, user: str) -> str:
+    """Llama-3.2-Instruct's chat template, built by hand rather than via a
+    tokenizer.apply_chat_template call so this has no dependency on exactly which
+    tokenizer config files AI Hub ships inside the exported model directory."""
+    system = system or "You are a helpful assistant."
+    return (
+        "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+        f"{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+        f"{user}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    )
 
 
 class _GeminiBackend:
@@ -176,10 +271,12 @@ class LLMClient:
         self.backend = backend
         if backend == "local":
             self._impl = _OllamaBackend(model or OLLAMA_MODEL)
+        elif backend == "qnn":
+            self._impl = _QnnLlmBackend(model or QNN_LLM_MODEL_DIR)
         elif backend == "cloud":
             self._impl = _GeminiBackend(model or GEMINI_MODEL)
         else:
-            raise ValueError(f"unknown LLM_BACKEND {backend!r}, expected 'local' or 'cloud'")
+            raise ValueError(f"unknown LLM_BACKEND {backend!r}, expected 'local', 'qnn', or 'cloud'")
         self.model = self._impl.model
 
     @property

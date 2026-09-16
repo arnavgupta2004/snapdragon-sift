@@ -75,6 +75,7 @@ export interface IngestResult {
   n_files_crawled: number
   by_type: Record<string, number>
   n_indexed_total: number
+  n_images_indexed: number
   cleared_existing: boolean
 }
 

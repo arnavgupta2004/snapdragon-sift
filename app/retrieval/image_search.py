@@ -7,11 +7,12 @@ text embedder, all-MiniLM-L6-v2) never looks at image bytes at all — a .png/.j
 was previously only findable by filename/metadata search. This module is what makes
 it findable by content.
 
-Runs entirely locally via sentence-transformers' clip-ViT-B-32 wrapper (no cloud
-call) — consistent with this project's on-device-by-default LLM backend, and it's a
-genuinely separate embedding space from the text embedder (512-dim CLIP vs. 384-dim
-MiniLM), so it lives in its own Chroma collection rather than sharing
-semantic_search.py's.
+The actual embedding model is a config-swappable backend (CPU/GPU via
+sentence-transformers by default, or Qualcomm AI Hub CLIP on the Hexagon NPU) — see
+app/embedding_client.py, the single chokepoint this module calls into for every
+embed_image()/embed_text() call. It's a genuinely separate embedding space from the
+text embedder (512-dim CLIP vs. 384-dim MiniLM), so it lives in its own Chroma
+collection rather than sharing semantic_search.py's.
 """
 
 from __future__ import annotations
@@ -22,8 +23,8 @@ from pathlib import Path
 
 from sqlmodel import select
 
-from app.config import IMAGE_CLIP_MODEL_NAME as MODEL_NAME
 from app.db import get_session
+from app.embedding_client import get_embedding_client
 from app.models import FileRecord
 from app.retrieval.base import ScoredFile
 
@@ -31,13 +32,6 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 CHROMA_DIR = REPO_ROOT / "data" / "chroma"
 COLLECTION_NAME = "images_clip"
 IMAGE_EXTENSIONS = {"png", "jpg", "jpeg"}
-
-
-@lru_cache(maxsize=1)
-def _get_clip_model():
-    from sentence_transformers import SentenceTransformer
-
-    return SentenceTransformer(MODEL_NAME)
 
 
 @lru_cache(maxsize=1)
@@ -87,7 +81,7 @@ def build_index(force: bool = False) -> int:
 
     from PIL import Image
 
-    model = _get_clip_model()
+    client = get_embedding_client()
     ids: list[str] = []
     embeddings: list[list[float]] = []
     docs: list[str] = []
@@ -100,7 +94,7 @@ def build_index(force: bool = False) -> int:
             img = Image.open(path).convert("RGB")
         except Exception:
             continue
-        vec = model.encode([img], normalize_embeddings=True, show_progress_bar=False)[0]
+        vec = client.embed_image(img)
         ids.append(str(r.id))
         embeddings.append(vec.tolist())
         docs.append(r.filename)
@@ -116,8 +110,8 @@ def search(query: str, limit: int = 10) -> list[ScoredFile]:
     if collection.count() == 0:
         return []
 
-    model = _get_clip_model()
-    query_vec = model.encode([query], normalize_embeddings=True, show_progress_bar=False)[0].tolist()
+    client = get_embedding_client()
+    query_vec = client.embed_text(query).tolist()
 
     result = collection.query(query_embeddings=[query_vec], n_results=min(limit, collection.count()))
     ids = result["ids"][0]
@@ -131,7 +125,7 @@ def search(query: str, limit: int = 10) -> list[ScoredFile]:
                 file_id=int(file_id_str),
                 score=similarity,
                 source="image_semantic",
-                explanation=f"image content match {similarity:.3f} (CLIP, {MODEL_NAME})",
+                explanation=f"image content match {similarity:.3f} (CLIP/{client.backend}, {client.model_name})",
             )
         )
     return results

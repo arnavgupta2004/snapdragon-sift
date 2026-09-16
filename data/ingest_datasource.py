@@ -88,6 +88,12 @@ def main() -> None:
     n = build_index(force=True)
     print(f"[ingest_datasource] semantic index now covers {n} files total")
 
+    print("[ingest_datasource] rebuilding image content (CLIP) index...")
+    from app.retrieval.image_search import build_index as build_image_index
+
+    n_images = build_image_index(force=True)
+    print(f"[ingest_datasource] image index now covers {n_images} images total")
+
 
 if __name__ == "__main__":
     main()
