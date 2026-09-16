@@ -1,0 +1,26 @@
+.git
+.github
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+
+# Generated data artifacts — the container regenerates these fresh on first boot
+# (see docker-entrypoint.sh), so baking a local copy in would be non-reproducible.
+data/db.sqlite
+data/chroma/
+data/files_corpus/
+app/personalization/models/
+app/agent/models/
+
+.env
+.env.*
+!.env.example
+
+ui/frontend/node_modules
+ui/frontend/dist
+ui/frontend/.vite
+
+.DS_Store

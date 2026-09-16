@@ -1,0 +1,13 @@
+{
+  "n_labeled_queries": 49,
+  "rule_based": {
+    "n_covered_without_any_classifier": 19,
+    "coverage_fraction": 0.3877551020408163,
+    "agreement_with_llm_on_covered": 1.0
+  },
+  "learned_router": {
+    "available": true,
+    "n_evaluated_on_borderline": 30,
+    "agreement_with_llm": 0.9
+  }
+}

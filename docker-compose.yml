@@ -1,0 +1,70 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  # One-shot init container: pulls the default local model once the ollama service is
+  # actually accepting connections, then exits. `api` waits on this completing
+  # successfully (not just on `ollama` being healthy) so the first real query never
+  # races a still-downloading model.
+  ollama-pull:
+    image: ollama/ollama:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    entrypoint: ["sh", "-c", "OLLAMA_HOST=http://ollama:11434 ollama pull ${OLLAMA_MODEL:-qwen2.5:1.5b}"]
+    restart: "no"
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    # Deliberately no volume mount for /app/data: it holds both the source generator
+    # scripts (copied in at build time) and the generated corpus/DB/index
+    # (docker-entrypoint.sh builds them on first boot of the container). A volume
+    # mounted over the whole directory would shadow the source scripts themselves,
+    # not just persist the generated data. Regenerating on every fresh container
+    # start (~1-2 min) is consistent with this project's reproducible-from-scratch
+    # philosophy everywhere else (see data/generate_synthetic_data.py).
+    environment:
+      # Local, on-device Ollama is the default backend (LLM_BACKEND=local) — no API
+      # key needed, no network call leaves the compose network. Set LLM_BACKEND=cloud
+      # and GEMINI_API_KEY to opt into the cloud comparison arm instead.
+      - LLM_BACKEND=${LLM_BACKEND:-local}
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5:1.5b}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
+    depends_on:
+      ollama-pull:
+        condition: service_completed_successfully
+    healthcheck:
+      # Generous start_period: first boot generates the synthetic corpus, downloads
+      # the sentence-transformer + cross-encoder + CLIP models from Hugging Face, and
+      # builds the embedding indexes — a few minutes on a cold cache, seconds on a
+      # warm one. The Ollama model pull happens in parallel via ollama-pull above.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/users')"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 300s
+
+  frontend:
+    build: ./ui/frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  ollama_data:

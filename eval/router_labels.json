@@ -1,0 +1,296 @@
+[
+  {
+    "id": "easy-166",
+    "query": "open reviewer_comment_v2.docx",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-78",
+    "query": "open dashboard_update.pptx",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-203",
+    "query": "open etl_pipeline_v2.xlsx",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-334",
+    "query": "open reimbursement_plan.pdf",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-25",
+    "query": "open backpropagation_working.md",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-38",
+    "query": "open telemetry_checklist.py",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-275",
+    "query": "open keynote_review.docx",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-49",
+    "query": "open simulation_run_checklist.py",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-188",
+    "query": "open schema_migration_analysis.py",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-299",
+    "query": "open figma_export_notes.docx",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-30",
+    "query": "open hyperparameter_final.md",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-260",
+    "query": "open poster_session_update.pptx",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-110",
+    "query": "open recipe_review.md",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-20",
+    "query": "open assignment_final.md",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "easy-45",
+    "query": "open structural_load_plan.py",
+    "difficulty": "easy",
+    "llm_tier": "fast"
+  },
+  {
+    "id": "medium-finance_reports-xlsx",
+    "query": "find my xlsx files related to financial / business reports",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-design_assets-docx",
+    "query": "find my docx files related to design assets",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-personal_notes-txt",
+    "query": "find my txt files related to personal notes",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-design_assets-pdf",
+    "query": "find my pdf files related to design assets",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-client_project-pdf",
+    "query": "find my pdf files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-client_project-xlsx",
+    "query": "find my xlsx files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-client_project-docx",
+    "query": "find my docx files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-personal_notes-xlsx",
+    "query": "find my xlsx files related to personal notes",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-conference_decks-pdf",
+    "query": "find my pdf files related to conference presentation decks",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-design_assets-png",
+    "query": "find my png files related to design assets",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-sim_scripts-xlsx",
+    "query": "find my xlsx files related to aerospace simulation scripts",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-admin_hr-xlsx",
+    "query": "find my xlsx files related to admin / hr documents",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-ml_coursework-pptx",
+    "query": "find my pptx files related to ml coursework",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-sim_scripts-md",
+    "query": "find my md files related to aerospace simulation scripts",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-ml_coursework-md",
+    "query": "find my md files related to ml coursework",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-finance_reports-pdf",
+    "query": "find my pdf files related to financial / business reports",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-data_eng-md",
+    "query": "find my md files related to data engineering / etl",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-client_project-py",
+    "query": "find my py files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-research_drafts-pdf",
+    "query": "find my pdf files related to research paper drafts",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "medium-data_eng-py",
+    "query": "find my py files related to data engineering / etl",
+    "difficulty": "medium",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "hard-research_drafts-audio_deepfake",
+    "query": "find that thing I was working on with my advisor about audio deepfakes a few weeks ago",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-research_drafts-spoofing_detection",
+    "query": "wasn't there something about spoofing detection I was drafting recently",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-research_drafts-ablation_study",
+    "query": "the experiment where I removed pieces one at a time to see what mattered",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-sim_scripts-kalman_filter",
+    "query": "that sensor fusion thing I was messing with a while back, some kind of filter",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-sim_scripts-trajectory_simulation",
+    "query": "the flight path thing I was running simulations on",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-data_eng-airflow_dag",
+    "query": "that scheduled pipeline thing that runs every night",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-client_project-churn_rate",
+    "query": "that number the client cares about, the one about people leaving",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-client_project-dashboard",
+    "query": "that visual thing I built for the client to see their numbers",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-ml_coursework-overfitting",
+    "query": "my notes about the model doing too well on training but not testing",
+    "difficulty": "hard",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "hard-finance_reports-profit_margin",
+    "query": "the numbers about how much we're actually making after costs",
+    "difficulty": "hard",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "hard-finance_reports-balance_sheet",
+    "query": "the document with all the assets and liabilities laid out",
+    "difficulty": "hard",
+    "llm_tier": "standard"
+  },
+  {
+    "id": "hard-conference_decks-camera_ready",
+    "query": "the deck I had to finalize before the deadline for that talk",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-design_assets-wireframe",
+    "query": "that rough sketch of the app layout I made",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  },
+  {
+    "id": "hard-admin_hr-reimbursement",
+    "query": "the paperwork for getting my money back from that trip",
+    "difficulty": "hard",
+    "llm_tier": "deep"
+  }
+]

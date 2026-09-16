@@ -1,0 +1,273 @@
+{
+  "queries": [
+    {
+      "id": "image-content-triangle-blue",
+      "query": "there's a photo somewhere with a large blue triangle in it, not sure what it's called",
+      "shape": "triangle",
+      "color": "blue",
+      "ground_truth_file_ids": [
+        290,
+        296,
+        307,
+        315
+      ]
+    },
+    {
+      "id": "image-content-star-blue",
+      "query": "there's a photo somewhere with a large blue star in it, not sure what it's called",
+      "shape": "star",
+      "color": "blue",
+      "ground_truth_file_ids": [
+        286,
+        310,
+        312
+      ]
+    },
+    {
+      "id": "image-content-square-purple",
+      "query": "there's a photo somewhere with a large purple square in it, not sure what it's called",
+      "shape": "square",
+      "color": "purple",
+      "ground_truth_file_ids": [
+        283,
+        287
+      ]
+    },
+    {
+      "id": "image-content-square-green",
+      "query": "there's a photo somewhere with a large green square in it, not sure what it's called",
+      "shape": "square",
+      "color": "green",
+      "ground_truth_file_ids": [
+        288,
+        295
+      ]
+    },
+    {
+      "id": "image-content-square-orange",
+      "query": "there's a photo somewhere with an large orange square in it, not sure what it's called",
+      "shape": "square",
+      "color": "orange",
+      "ground_truth_file_ids": [
+        291,
+        294
+      ]
+    },
+    {
+      "id": "image-content-star-purple",
+      "query": "there's a photo somewhere with a large purple star in it, not sure what it's called",
+      "shape": "star",
+      "color": "purple",
+      "ground_truth_file_ids": [
+        297,
+        302
+      ]
+    }
+  ],
+  "isolated_retriever": {
+    "n_queries": 6,
+    "precision_at_5": 0.43333333333333335,
+    "recall_at_5": 0.875,
+    "ndcg_at_10": 0.8305030263522879,
+    "mrr": 0.8055555555555556,
+    "per_query": [
+      {
+        "id": "image-content-triangle-blue",
+        "precision_at_5": 0.6,
+        "recall_at_5": 0.75,
+        "ndcg_at_10": 0.9279611693743142,
+        "mrr": 1.0
+      },
+      {
+        "id": "image-content-star-blue",
+        "precision_at_5": 0.6,
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6797310500037655,
+        "mrr": 0.5
+      },
+      {
+        "id": "image-content-square-purple",
+        "precision_at_5": 0.2,
+        "recall_at_5": 0.5,
+        "ndcg_at_10": 0.8315546295836225,
+        "mrr": 1.0
+      },
+      {
+        "id": "image-content-square-green",
+        "precision_at_5": 0.4,
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.5437713091520254,
+        "mrr": 0.3333333333333333
+      },
+      {
+        "id": "image-content-square-orange",
+        "precision_at_5": 0.4,
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr": 1.0
+      },
+      {
+        "id": "image-content-star-purple",
+        "precision_at_5": 0.4,
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr": 1.0
+      }
+    ]
+  },
+  "full_pipeline": {
+    "n_runs": 18,
+    "precision_at_5": 0.15555555555555556,
+    "ndcg_at_10": 0.35251509586899027,
+    "mrr": 0.32720458553791887,
+    "tiers_hit": {
+      "deep": 18
+    },
+    "per_run": [
+      {
+        "id": "image-content-triangle-blue",
+        "user_id": 1,
+        "tier": "deep",
+        "precision_at_5": 0.2,
+        "ndcg_at_10": 0.32531670832675136,
+        "mrr": 0.3333333333333333
+      },
+      {
+        "id": "image-content-triangle-blue",
+        "user_id": 2,
+        "tier": "deep",
+        "precision_at_5": 0.2,
+        "ndcg_at_10": 0.24630238874073,
+        "mrr": 0.5
+      },
+      {
+        "id": "image-content-triangle-blue",
+        "user_id": 3,
+        "tier": "deep",
+        "precision_at_5": 0.2,
+        "ndcg_at_10": 0.5032251913410369,
+        "mrr": 1.0
+      },
+      {
+        "id": "image-content-star-blue",
+        "user_id": 1,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.15642624200758548,
+        "mrr": 0.14285714285714285
+      },
+      {
+        "id": "image-content-star-blue",
+        "user_id": 2,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.15642624200758548,
+        "mrr": 0.14285714285714285
+      },
+      {
+        "id": "image-content-star-blue",
+        "user_id": 3,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.14126697285982898,
+        "mrr": 0.1111111111111111
+      },
+      {
+        "id": "image-content-square-purple",
+        "user_id": 1,
+        "tier": "deep",
+        "precision_at_5": 0.4,
+        "ndcg_at_10": 0.6934264036172708,
+        "mrr": 0.5
+      },
+      {
+        "id": "image-content-square-purple",
+        "user_id": 2,
+        "tier": "deep",
+        "precision_at_5": 0.4,
+        "ndcg_at_10": 1.0,
+        "mrr": 1.0
+      },
+      {
+        "id": "image-content-square-purple",
+        "user_id": 3,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.17723928678404774,
+        "mrr": 0.1
+      },
+      {
+        "id": "image-content-square-green",
+        "user_id": 1,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.20438239758848611,
+        "mrr": 0.14285714285714285
+      },
+      {
+        "id": "image-content-square-green",
+        "user_id": 2,
+        "tier": "deep",
+        "precision_at_5": 0.2,
+        "ndcg_at_10": 0.44130740935663865,
+        "mrr": 0.25
+      },
+      {
+        "id": "image-content-square-green",
+        "user_id": 3,
+        "tier": "deep",
+        "precision_at_5": 0.2,
+        "ndcg_at_10": 0.5802792108518124,
+        "mrr": 0.5
+      },
+      {
+        "id": "image-content-square-orange",
+        "user_id": 1,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.0,
+        "mrr": 0.0
+      },
+      {
+        "id": "image-content-square-orange",
+        "user_id": 2,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.0,
+        "mrr": 0.0
+      },
+      {
+        "id": "image-content-square-orange",
+        "user_id": 3,
+        "tier": "deep",
+        "precision_at_5": 0.0,
+        "ndcg_at_10": 0.0,
+        "mrr": 0.0
+      },
+      {
+        "id": "image-content-star-purple",
+        "user_id": 1,
+        "tier": "deep",
+        "precision_at_5": 0.2,
+        "ndcg_at_10": 0.6052602440527057,
+        "mrr": 0.5
+      },
+      {
+        "id": "image-content-star-purple",
+        "user_id": 2,
+        "tier": "deep",
+        "precision_at_5": 0.4,
+        "ndcg_at_10": 0.5706417189553201,
+        "mrr": 0.3333333333333333
+      },
+      {
+        "id": "image-content-star-purple",
+        "user_id": 3,
+        "tier": "deep",
+        "precision_at_5": 0.4,
+        "ndcg_at_10": 0.5437713091520254,
+        "mrr": 0.3333333333333333
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+user_id,query_id,query,n_personal_relevant,ndcg_without_personalization,ndcg_with_personalization
+1,easy-166,open reviewer_comment_v2.docx,1,1.0,1.0
+1,easy-25,open backpropagation_working.md,1,1.0,1.0
+1,easy-38,open telemetry_checklist.py,1,1.0,1.0
+1,easy-49,open simulation_run_checklist.py,1,1.0,1.0
+1,easy-30,open hyperparameter_final.md,1,1.0,1.0
+1,easy-260,open poster_session_update.pptx,1,1.0,1.0
+1,easy-110,open recipe_review.md,1,1.0,0.6309297535714575
+1,easy-20,open assignment_final.md,1,1.0,1.0
+1,easy-45,open structural_load_plan.py,1,1.0,1.0
+1,medium-personal_notes-txt,find my txt files related to personal notes,11,0.6947651160602988,0.6352557412688554
+1,medium-personal_notes-xlsx,find my xlsx files related to personal notes,3,0.6713860725233041,0.6713860725233041
+1,medium-conference_decks-pdf,find my pdf files related to conference presentation decks,5,0.3391602052736161,0.3391602052736161
+1,medium-sim_scripts-xlsx,find my xlsx files related to aerospace simulation scripts,6,1.0,1.0
+1,medium-ml_coursework-pptx,find my pptx files related to ml coursework,6,0.644824486427155,0.644824486427155
+1,medium-sim_scripts-md,find my md files related to aerospace simulation scripts,3,0.9674679834891693,0.9674679834891693
+1,medium-ml_coursework-md,find my md files related to ml coursework,11,0.08514311764162098,0.2848142012137644
+1,medium-research_drafts-pdf,find my pdf files related to research paper drafts,8,0.48651711618483634,0.495954088426383
+1,hard-research_drafts-audio_deepfake,find that thing I was working on with my advisor about audio deepfakes a few weeks ago,2,0.6131471927654584,0.6131471927654584
+1,hard-research_drafts-spoofing_detection,wasn't there something about spoofing detection I was drafting recently,5,0.6504460199135362,0.6426881189719141
+1,hard-research_drafts-ablation_study,the experiment where I removed pieces one at a time to see what mattered,4,0.0,0.0
+1,hard-sim_scripts-kalman_filter,"that sensor fusion thing I was messing with a while back, some kind of filter",4,0.0,0.0
+1,hard-sim_scripts-trajectory_simulation,the flight path thing I was running simulations on,3,0.20210734650054757,0.20210734650054757
+1,hard-ml_coursework-overfitting,my notes about the model doing too well on training but not testing,1,0.43067655807339306,0.31546487678572877
+1,hard-conference_decks-camera_ready,the deck I had to finalize before the deadline for that talk,2,0.17723928678404774,0.0
+2,easy-78,open dashboard_update.pptx,1,1.0,0.6309297535714575
+2,easy-334,open reimbursement_plan.pdf,1,1.0,1.0
+2,easy-275,open keynote_review.docx,1,1.0,1.0
+2,easy-260,open poster_session_update.pptx,1,1.0,1.0
+2,medium-finance_reports-xlsx,find my xlsx files related to financial / business reports,14,0.40350157154648025,0.40350157154648025
+2,medium-personal_notes-txt,find my txt files related to personal notes,10,0.8630152897016882,0.9266360779006398
+2,medium-client_project-pdf,find my pdf files related to client project — retail dashboard,3,0.3228087653971817,0.3084274278260313
+2,medium-client_project-xlsx,find my xlsx files related to client project — retail dashboard,8,0.5726647810251273,0.5615798830425319
+2,medium-client_project-docx,find my docx files related to client project — retail dashboard,7,0.18953836965473142,0.2807081466403135
+2,medium-personal_notes-xlsx,find my xlsx files related to personal notes,2,0.8772153153380493,0.8772153153380493
+2,medium-conference_decks-pdf,find my pdf files related to conference presentation decks,2,0.0,0.0
+2,medium-admin_hr-xlsx,find my xlsx files related to admin / hr documents,2,0.9197207891481876,1.0
+2,medium-finance_reports-pdf,find my pdf files related to financial / business reports,12,0.20483424751859086,0.31488013066763093
+2,medium-client_project-py,find my py files related to client project — retail dashboard,8,0.48564861833646344,0.3416424081865622
+2,hard-client_project-churn_rate,"that number the client cares about, the one about people leaving",3,0.0,0.0
+2,hard-client_project-dashboard,that visual thing I built for the client to see their numbers,4,0.19519002499605084,0.19519002499605084
+2,hard-finance_reports-profit_margin,the numbers about how much we're actually making after costs,4,0.15101961822780524,0.16812753627111746
+2,hard-finance_reports-balance_sheet,the document with all the assets and liabilities laid out,6,0.30798345931689824,0.28638129926840206
+2,hard-conference_decks-camera_ready,the deck I had to finalize before the deadline for that talk,2,0.36181498356361597,0.39564672360221187
+2,hard-admin_hr-reimbursement,the paperwork for getting my money back from that trip,7,0.2958750506849613,0.3761791451870137
+3,easy-78,open dashboard_update.pptx,1,1.0,0.6309297535714575
+3,easy-334,open reimbursement_plan.pdf,1,1.0,0.5
+3,easy-275,open keynote_review.docx,1,1.0,1.0
+3,easy-299,open figma_export_notes.docx,1,1.0,1.0
+3,easy-260,open poster_session_update.pptx,1,1.0,1.0
+3,easy-110,open recipe_review.md,1,1.0,1.0
+3,medium-design_assets-docx,find my docx files related to design assets,5,0.0,0.0
+3,medium-personal_notes-txt,find my txt files related to personal notes,9,0.5025272998721168,0.5998778046814612
+3,medium-design_assets-pdf,find my pdf files related to design assets,6,0.0,0.0
+3,medium-client_project-pdf,find my pdf files related to client project — retail dashboard,3,0.3228087653971817,0.4790262927928244
+3,medium-client_project-xlsx,find my xlsx files related to client project — retail dashboard,7,0.6223227366315629,0.5863096353940034
+3,medium-client_project-docx,find my docx files related to client project — retail dashboard,5,0.23386470445736623,0.2826335043946801
+3,medium-personal_notes-xlsx,find my xlsx files related to personal notes,3,0.6713860725233041,0.8278123145308894
+3,medium-conference_decks-pdf,find my pdf files related to conference presentation decks,6,0.4935232796777482,0.4935232796777482
+3,medium-design_assets-png,find my png files related to design assets,23,0.9266360779006398,1.0
+3,medium-admin_hr-xlsx,find my xlsx files related to admin / hr documents,4,0.8318724637288826,0.8048099750039491
+3,medium-client_project-py,find my py files related to client project — retail dashboard,8,0.48564861833646344,0.30046628673637255
+3,hard-client_project-churn_rate,"that number the client cares about, the one about people leaving",2,0.0,0.0
+3,hard-client_project-dashboard,that visual thing I built for the client to see their numbers,4,0.19519002499605084,0.13012668333070054
+3,hard-conference_decks-camera_ready,the deck I had to finalize before the deadline for that talk,3,0.2769189462922768,0.38268031849431083
+3,hard-design_assets-wireframe,that rough sketch of the app layout I made,6,0.09109240322345807,0.09109240322345807
+3,hard-admin_hr-reimbursement,the paperwork for getting my money back from that trip,7,0.2958750506849613,0.37862107199028133

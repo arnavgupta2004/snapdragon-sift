@@ -1,0 +1,50 @@
+id,difficulty,query,precision_at_5,recall_at_5,ndcg_at_10,mrr
+easy-166,easy,open reviewer_comment_v2.docx,0.2,1.0,1.0,1.0
+easy-78,easy,open dashboard_update.pptx,0.2,1.0,1.0,1.0
+easy-203,easy,open etl_pipeline_v2.xlsx,0.2,1.0,1.0,1.0
+easy-334,easy,open reimbursement_plan.pdf,0.2,1.0,1.0,1.0
+easy-25,easy,open backpropagation_working.md,0.2,1.0,1.0,1.0
+easy-38,easy,open telemetry_checklist.py,0.2,1.0,1.0,1.0
+easy-275,easy,open keynote_review.docx,0.2,1.0,1.0,1.0
+easy-49,easy,open simulation_run_checklist.py,0.2,1.0,1.0,1.0
+easy-188,easy,open schema_migration_analysis.py,0.2,1.0,1.0,1.0
+easy-299,easy,open figma_export_notes.docx,0.2,1.0,1.0,1.0
+easy-30,easy,open hyperparameter_final.md,0.2,1.0,1.0,1.0
+easy-260,easy,open poster_session_update.pptx,0.2,1.0,1.0,1.0
+easy-110,easy,open recipe_review.md,0.2,1.0,1.0,1.0
+easy-20,easy,open assignment_final.md,0.2,1.0,1.0,1.0
+easy-45,easy,open structural_load_plan.py,0.2,1.0,1.0,1.0
+medium-finance_reports-xlsx,medium,find my xlsx files related to financial / business reports,0.26666666666666666,0.09523809523809523,0.24503245248773628,0.5277777777777778
+medium-design_assets-docx,medium,find my docx files related to design assets,0.0,0.0,0.0,0.0
+medium-personal_notes-txt,medium,find my txt files related to personal notes,1.0,0.35714285714285715,1.0,1.0
+medium-design_assets-pdf,medium,find my pdf files related to design assets,0.0,0.0,0.0,0.0
+medium-client_project-pdf,medium,find my pdf files related to client project — retail dashboard,0.2,0.3333333333333333,0.427297154120566,0.2916666666666667
+medium-client_project-xlsx,medium,find my xlsx files related to client project — retail dashboard,0.4,0.25,0.5166882004617648,1.0
+medium-client_project-docx,medium,find my docx files related to client project — retail dashboard,0.33333333333333337,0.23809523809523808,0.39481687418662115,0.8333333333333334
+medium-personal_notes-xlsx,medium,find my xlsx files related to personal notes,0.2,0.3333333333333333,0.6002887458821389,0.8333333333333334
+medium-conference_decks-pdf,medium,find my pdf files related to conference presentation decks,0.33333333333333337,0.2777777777777778,0.3745967930982488,0.6666666666666666
+medium-design_assets-png,medium,find my png files related to design assets,1.0,0.20833333333333334,1.0,1.0
+medium-sim_scripts-xlsx,medium,find my xlsx files related to aerospace simulation scripts,0.6666666666666666,0.5555555555555556,0.8673858484038656,0.8333333333333334
+medium-admin_hr-xlsx,medium,find my xlsx files related to admin / hr documents,0.33333333333333337,0.4166666666666667,0.4870719825716286,0.7333333333333334
+medium-ml_coursework-pptx,medium,find my pptx files related to ml coursework,0.13333333333333333,0.1111111111111111,0.21638816295804647,0.3666666666666667
+medium-sim_scripts-md,medium,find my md files related to aerospace simulation scripts,0.4,0.6666666666666666,0.6159716799823479,0.6111111111111112
+medium-ml_coursework-md,medium,find my md files related to ml coursework,0.06666666666666667,0.030303030303030304,0.12033009060449576,0.15
+medium-finance_reports-pdf,medium,find my pdf files related to financial / business reports,0.0,0.0,0.024454640699786683,0.047619047619047616
+medium-data_eng-md,medium,find my md files related to data engineering / etl,0.5333333333333333,0.38095238095238093,0.5951936774244714,1.0
+medium-client_project-py,medium,find my py files related to client project — retail dashboard,0.4666666666666667,0.2916666666666667,0.6317617334676483,1.0
+medium-research_drafts-pdf,medium,find my pdf files related to research paper drafts,0.4,0.2222222222222222,0.3712128188410194,1.0
+medium-data_eng-py,medium,find my py files related to data engineering / etl,0.06666666666666667,0.018518518518518517,0.24417611288279853,0.19444444444444445
+hard-research_drafts-audio_deepfake,hard,find that thing I was working on with my advisor about audio deepfakes a few weeks ago,0.13333333333333333,0.3333333333333333,0.2398910907200171,0.20555555555555555
+hard-research_drafts-spoofing_detection,hard,wasn't there something about spoofing detection I was drafting recently,0.6,0.5,0.8438059545392382,1.0
+hard-research_drafts-ablation_study,hard,the experiment where I removed pieces one at a time to see what mattered,0.4666666666666667,0.5833333333333334,0.5059249828239533,0.3888888888888889
+hard-sim_scripts-kalman_filter,hard,"that sensor fusion thing I was messing with a while back, some kind of filter",0.0,0.0,0.0,0.0
+hard-sim_scripts-trajectory_simulation,hard,the flight path thing I was running simulations on,0.2,0.3333333333333333,0.18154179253735267,0.2
+hard-data_eng-airflow_dag,hard,that scheduled pipeline thing that runs every night,0.0,0.0,0.04521732447748259,0.03333333333333333
+hard-client_project-churn_rate,hard,"that number the client cares about, the one about people leaving",0.4,0.6666666666666666,0.5571286908411013,0.6111111111111112
+hard-client_project-dashboard,hard,that visual thing I built for the client to see their numbers,0.06666666666666667,0.08333333333333333,0.22439801972951365,0.19576719576719576
+hard-ml_coursework-overfitting,hard,my notes about the model doing too well on training but not testing,0.2,1.0,0.7956176024115139,0.7333333333333334
+hard-finance_reports-profit_margin,hard,the numbers about how much we're actually making after costs,0.33333333333333337,0.4166666666666667,0.6332470877256884,1.0
+hard-finance_reports-balance_sheet,hard,the document with all the assets and liabilities laid out,0.8,0.6666666666666666,0.8718062393280013,1.0
+hard-conference_decks-camera_ready,hard,the deck I had to finalize before the deadline for that talk,0.0,0.0,0.0,0.0
+hard-design_assets-wireframe,hard,that rough sketch of the app layout I made,0.5333333333333333,0.4444444444444444,0.6361671029369227,0.6666666666666666
+hard-admin_hr-reimbursement,hard,the paperwork for getting my money back from that trip,0.8,0.5714285714285714,0.784122152457235,1.0

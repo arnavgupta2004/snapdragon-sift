@@ -1,0 +1,26 @@
+{
+  "priya_grad_student": {
+    "n_queries": 24,
+    "ndcg_without_personalization": 0.665120020901541,
+    "ndcg_with_personalization": 0.6434666694673897,
+    "lift": -0.021653351434151244
+  },
+  "david_analyst": {
+    "n_queries": 20,
+    "ndcg_without_personalization": 0.5075415442227916,
+    "ndcg_with_personalization": 0.5033522722022247,
+    "lift": -0.004189272020566943
+  },
+  "maria_freelancer": {
+    "n_queries": 22,
+    "ndcg_without_personalization": 0.5431666565328187,
+    "ndcg_with_personalization": 0.5221776965373699,
+    "lift": -0.02098895999544891
+  },
+  "overall": {
+    "n_queries": 66,
+    "ndcg_without_personalization": 0.5767178459062853,
+    "ndcg_with_personalization": 0.5605781035618785,
+    "lift": -0.016139742344406738
+  }
+}

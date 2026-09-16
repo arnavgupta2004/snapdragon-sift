@@ -1,0 +1,152 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate synthetic corpus
+        run: python data/generate_synthetic_data.py
+
+      - name: Build labeled eval set
+        run: python eval/build_eval_set.py
+
+      - name: Run tests
+        # No Ollama and no GEMINI_API_KEY are available in this runner, so this
+        # exercises the rule-based fallback paths end to end for every LLM-gated code
+        # path — exactly what the system is designed to degrade to. See README for
+        # what changes with a local model or cloud key available.
+        run: pytest -q
+
+      - name: Run eval harness
+        run: |
+          python eval/run_benchmark.py
+          python eval/ablation_study.py
+          python eval/latency_comparison.py
+          python eval/baseline_comparison.py
+          python eval/personalization_lift.py
+          python eval/image_content_search.py
+
+      - name: Report eval drift vs. committed results
+        if: always()
+        run: |
+          echo "## Eval results: freshly generated vs. committed" >> "$GITHUB_STEP_SUMMARY"
+          if git diff --quiet -- eval/results/; then
+            echo "No drift — freshly generated eval/results/ match what's committed." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Drift detected (expected without GEMINI_API_KEY, or after a real code change):" >> "$GITHUB_STEP_SUMMARY"
+            echo '```diff' >> "$GITHUB_STEP_SUMMARY"
+            git diff --stat -- eval/results/ >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload eval results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: eval/results/
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ui/frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: ui/frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check and build
+        run: npm run build
+
+  docker:
+    # Proves docker-compose.yml actually boots the full stack (ollama + api + frontend)
+    # end to end, independent of any local machine — this is the only way this project
+    # verifies Docker at all, since local Docker Desktop is unavailable in this build
+    # environment. Runs on every push so this never silently rots.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and start the full stack
+        run: docker compose up -d --build
+
+      - name: Wait for the API to become reachable and healthy
+        run: |
+          echo "Polling http://localhost:8000/api/users (cold boot: ollama model pull +"
+          echo "corpus generation + embedding index builds can take several minutes)..."
+          deadline=$((SECONDS + 900))
+          until curl -sf http://localhost:8000/api/users -o /tmp/users_response.json; do
+            if [ $SECONDS -ge $deadline ]; then
+              echo "API did not become reachable within 15 minutes."
+              echo "--- docker compose ps ---"
+              docker compose ps
+              echo "--- docker compose logs ---"
+              docker compose logs
+              exit 1
+            fi
+            sleep 10
+          done
+          echo "API responded after ${SECONDS}s."
+          cat /tmp/users_response.json
+
+      - name: Smoke test — API returns the seeded users
+        run: |
+          python3 -c "
+          import json
+          data = json.load(open('/tmp/users_response.json'))
+          assert isinstance(data, list) and len(data) == 3, f'expected 3 seeded users, got: {data}'
+          names = {u['name'] for u in data}
+          assert names == {'Priya Iyer', 'David Chen', 'Maria Santos'}, f'unexpected users: {names}'
+          print('OK — API is serving the real seeded corpus:', names)
+          "
+
+      - name: Smoke test — a real query round-trips end to end
+        run: |
+          curl -sf -X POST http://localhost:8000/api/query \
+            -H 'Content-Type: application/json' \
+            -d '{"query": "open gradient_descent_v2.md", "user_id": 1}' \
+            -o /tmp/query_response.json
+          python3 -c "
+          import json
+          data = json.load(open('/tmp/query_response.json'))
+          assert 'routing_trace' in data and 'results' in data, f'unexpected response shape: {data.keys()}'
+          print('OK — routed to tier:', data['routing_trace']['tier'], 'with', len(data['results']), 'results')
+          "
+
+      - name: Smoke test — frontend serves the app
+        run: curl -sf http://localhost:5173/ -o /dev/null -w "frontend HTTP %{http_code}\n"
+
+      - name: Show container status and logs on failure
+        if: failure()
+        run: |
+          docker compose ps
+          docker compose logs
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v

@@ -1,0 +1,592 @@
+[
+  {
+    "id": "easy-166",
+    "query": "open reviewer_comment_v2.docx",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      166
+    ]
+  },
+  {
+    "id": "easy-78",
+    "query": "open dashboard_update.pptx",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      78
+    ]
+  },
+  {
+    "id": "easy-203",
+    "query": "open etl_pipeline_v2.xlsx",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      203
+    ]
+  },
+  {
+    "id": "easy-334",
+    "query": "open reimbursement_plan.pdf",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      334
+    ]
+  },
+  {
+    "id": "easy-25",
+    "query": "open backpropagation_working.md",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      25
+    ]
+  },
+  {
+    "id": "easy-38",
+    "query": "open telemetry_checklist.py",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      38
+    ]
+  },
+  {
+    "id": "easy-275",
+    "query": "open keynote_review.docx",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      275
+    ]
+  },
+  {
+    "id": "easy-49",
+    "query": "open simulation_run_checklist.py",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      49
+    ]
+  },
+  {
+    "id": "easy-188",
+    "query": "open schema_migration_analysis.py",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      188
+    ]
+  },
+  {
+    "id": "easy-299",
+    "query": "open figma_export_notes.docx",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      299
+    ]
+  },
+  {
+    "id": "easy-30",
+    "query": "open hyperparameter_final.md",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      30
+    ]
+  },
+  {
+    "id": "easy-260",
+    "query": "open poster_session_update.pptx",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      260
+    ]
+  },
+  {
+    "id": "easy-110",
+    "query": "open recipe_review.md",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      110
+    ]
+  },
+  {
+    "id": "easy-20",
+    "query": "open assignment_final.md",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      20
+    ]
+  },
+  {
+    "id": "easy-45",
+    "query": "open structural_load_plan.py",
+    "difficulty": "easy",
+    "ground_truth_file_ids": [
+      45
+    ]
+  },
+  {
+    "id": "medium-finance_reports-xlsx",
+    "query": "find my xlsx files related to financial / business reports",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      213,
+      220,
+      221,
+      222,
+      223,
+      226,
+      227,
+      228,
+      234,
+      235,
+      236,
+      237,
+      238,
+      240
+    ]
+  },
+  {
+    "id": "medium-design_assets-docx",
+    "query": "find my docx files related to design assets",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      293,
+      299,
+      303,
+      308,
+      309
+    ]
+  },
+  {
+    "id": "medium-personal_notes-txt",
+    "query": "find my txt files related to personal notes",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      106,
+      107,
+      114,
+      118,
+      119,
+      126,
+      128,
+      129,
+      130,
+      131,
+      133,
+      134,
+      135,
+      136
+    ]
+  },
+  {
+    "id": "medium-design_assets-pdf",
+    "query": "find my pdf files related to design assets",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      298,
+      300,
+      301,
+      304,
+      311,
+      314
+    ]
+  },
+  {
+    "id": "medium-client_project-pdf",
+    "query": "find my pdf files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      72,
+      97,
+      101
+    ]
+  },
+  {
+    "id": "medium-client_project-xlsx",
+    "query": "find my xlsx files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      71,
+      74,
+      91,
+      95,
+      96,
+      100,
+      103,
+      104
+    ]
+  },
+  {
+    "id": "medium-client_project-docx",
+    "query": "find my docx files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      73,
+      80,
+      82,
+      86,
+      88,
+      90,
+      105
+    ]
+  },
+  {
+    "id": "medium-personal_notes-xlsx",
+    "query": "find my xlsx files related to personal notes",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      109,
+      116,
+      137
+    ]
+  },
+  {
+    "id": "medium-conference_decks-pdf",
+    "query": "find my pdf files related to conference presentation decks",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      254,
+      256,
+      259,
+      276,
+      278,
+      280
+    ]
+  },
+  {
+    "id": "medium-design_assets-png",
+    "query": "find my png files related to design assets",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      294,
+      295,
+      296,
+      297,
+      302,
+      305,
+      306,
+      307,
+      310,
+      312,
+      313,
+      315
+    ]
+  },
+  {
+    "id": "medium-sim_scripts-xlsx",
+    "query": "find my xlsx files related to aerospace simulation scripts",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      39,
+      48,
+      58,
+      59,
+      67,
+      68
+    ]
+  },
+  {
+    "id": "medium-admin_hr-xlsx",
+    "query": "find my xlsx files related to admin / hr documents",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      316,
+      322,
+      325,
+      348
+    ]
+  },
+  {
+    "id": "medium-ml_coursework-pptx",
+    "query": "find my pptx files related to ml coursework",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      6,
+      8,
+      15,
+      16,
+      19,
+      23
+    ]
+  },
+  {
+    "id": "medium-sim_scripts-md",
+    "query": "find my md files related to aerospace simulation scripts",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      43,
+      51,
+      54
+    ]
+  },
+  {
+    "id": "medium-ml_coursework-md",
+    "query": "find my md files related to ml coursework",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      1,
+      2,
+      3,
+      7,
+      11,
+      18,
+      20,
+      25,
+      30,
+      32,
+      33
+    ]
+  },
+  {
+    "id": "medium-finance_reports-pdf",
+    "query": "find my pdf files related to financial / business reports",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      211,
+      214,
+      215,
+      216,
+      218,
+      219,
+      224,
+      229,
+      231,
+      233,
+      239,
+      241,
+      242,
+      243
+    ]
+  },
+  {
+    "id": "medium-data_eng-md",
+    "query": "find my md files related to data engineering / etl",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      178,
+      186,
+      195,
+      198,
+      201,
+      204,
+      205
+    ]
+  },
+  {
+    "id": "medium-client_project-py",
+    "query": "find my py files related to client project \u2014 retail dashboard",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      75,
+      76,
+      79,
+      83,
+      87,
+      92,
+      94,
+      102
+    ]
+  },
+  {
+    "id": "medium-research_drafts-pdf",
+    "query": "find my pdf files related to research paper drafts",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      145,
+      146,
+      151,
+      154,
+      158,
+      164,
+      167,
+      171,
+      175
+    ]
+  },
+  {
+    "id": "medium-data_eng-py",
+    "query": "find my py files related to data engineering / etl",
+    "difficulty": "medium",
+    "ground_truth_file_ids": [
+      176,
+      179,
+      180,
+      181,
+      185,
+      188,
+      191,
+      192,
+      193,
+      194,
+      196,
+      199,
+      200,
+      202,
+      206,
+      207,
+      208,
+      210
+    ]
+  },
+  {
+    "id": "hard-research_drafts-audio_deepfake",
+    "query": "find that thing I was working on with my advisor about audio deepfakes a few weeks ago",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      145,
+      154
+    ]
+  },
+  {
+    "id": "hard-research_drafts-spoofing_detection",
+    "query": "wasn't there something about spoofing detection I was drafting recently",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      144,
+      147,
+      159,
+      165,
+      167,
+      174
+    ]
+  },
+  {
+    "id": "hard-research_drafts-ablation_study",
+    "query": "the experiment where I removed pieces one at a time to see what mattered",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      148,
+      155,
+      156,
+      170
+    ]
+  },
+  {
+    "id": "hard-sim_scripts-kalman_filter",
+    "query": "that sensor fusion thing I was messing with a while back, some kind of filter",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      36,
+      44,
+      59,
+      68
+    ]
+  },
+  {
+    "id": "hard-sim_scripts-trajectory_simulation",
+    "query": "the flight path thing I was running simulations on",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      53,
+      56,
+      66
+    ]
+  },
+  {
+    "id": "hard-data_eng-airflow_dag",
+    "query": "that scheduled pipeline thing that runs every night",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      181,
+      205,
+      209
+    ]
+  },
+  {
+    "id": "hard-client_project-churn_rate",
+    "query": "that number the client cares about, the one about people leaving",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      82,
+      93,
+      95
+    ]
+  },
+  {
+    "id": "hard-client_project-dashboard",
+    "query": "that visual thing I built for the client to see their numbers",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      78,
+      92,
+      102,
+      104
+    ]
+  },
+  {
+    "id": "hard-ml_coursework-overfitting",
+    "query": "my notes about the model doing too well on training but not testing",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      35
+    ]
+  },
+  {
+    "id": "hard-finance_reports-profit_margin",
+    "query": "the numbers about how much we're actually making after costs",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      220,
+      221,
+      232,
+      245
+    ]
+  },
+  {
+    "id": "hard-finance_reports-balance_sheet",
+    "query": "the document with all the assets and liabilities laid out",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      211,
+      224,
+      226,
+      227,
+      236,
+      237
+    ]
+  },
+  {
+    "id": "hard-conference_decks-camera_ready",
+    "query": "the deck I had to finalize before the deadline for that talk",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      259,
+      266,
+      267
+    ]
+  },
+  {
+    "id": "hard-design_assets-wireframe",
+    "query": "that rough sketch of the app layout I made",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      284,
+      302,
+      306,
+      308,
+      310,
+      314
+    ]
+  },
+  {
+    "id": "hard-admin_hr-reimbursement",
+    "query": "the paperwork for getting my money back from that trip",
+    "difficulty": "hard",
+    "ground_truth_file_ids": [
+      321,
+      325,
+      328,
+      330,
+      334,
+      338,
+      340
+    ]
+  }
+]
